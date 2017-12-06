@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{E0998654-2C00-4A67-904C-C61AE6AB9B00}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="TOrmBrINISQLite.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="demo2\Project_Demo2.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="TOrmBrINISQLite">
+        <MSBuild Projects="TOrmBrINISQLite.dproj"/>
+    </Target>
+    <Target Name="TOrmBrINISQLite:Clean">
+        <MSBuild Projects="TOrmBrINISQLite.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TOrmBrINISQLite:Make">
+        <MSBuild Projects="TOrmBrINISQLite.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Project_Demo2">
+        <MSBuild Projects="demo2\Project_Demo2.dproj"/>
+    </Target>
+    <Target Name="Project_Demo2:Clean">
+        <MSBuild Projects="demo2\Project_Demo2.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Project_Demo2:Make">
+        <MSBuild Projects="demo2\Project_Demo2.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="TOrmBrINISQLite;Project_Demo2"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="TOrmBrINISQLite:Clean;Project_Demo2:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="TOrmBrINISQLite:Make;Project_Demo2:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
